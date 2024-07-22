@@ -4,7 +4,7 @@ import { authenticate } from '@utils/auth';
 import Movie from '@models/Movie'; // Import the Movie model
 
 /**
- * Retrieves a list of purchased movie details (title, coverImage, genres) for the user.
+ * Retrieves a list of purchased movie details for the user.
  *
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
@@ -25,7 +25,7 @@ export async function GET(req, res) {
         const purchasedMovieIds = purchases.flatMap(purchase => purchase.items.map(item => item.movieId));
 
         // Use Movie model to find details for each movie ID
-        const movieDetails = await Movie.find({ _id: { $in: purchasedMovieIds } });
+        const movieDetails = await Movie.find({ _id: { $in: purchasedMovieIds }}, '_id title coverImage genres');
 
         // Send movie details as response
         res.setHeader('Content-Type', 'application/json');
