@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import axios from 'axios';
-import styles from '@styles/components/Footer.module.css';
+import styles from '@styles/components/Register.module.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -33,6 +33,7 @@ const Register = () => {
       <input name="firstName" type="text" placeholder="First Name" onChange={handleChange} required />
       <input name="lastName" type="text" placeholder="Last Name" onChange={handleChange} required />
       <input name="email" type="email" placeholder="Email" onChange={handleChange} required />
+      <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
       <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
       <button type="submit">Register</button>
     </form>

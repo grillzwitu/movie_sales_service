@@ -52,7 +52,7 @@ const Profile = () => {
   return (
     <div className={styles.profile}>
       <h2>Profile</h2>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form action="" method="" className={styles.form} onSubmit={handleSubmit}>
         <input name="firstName" type="text" value={formData.firstName} onChange={handleChange} required />
         <input name="lastName" type="text" value={formData.lastName} onChange={handleChange} required />
         <input name="email" type="email" value={formData.email} onChange={handleChange} required />

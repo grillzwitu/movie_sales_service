@@ -13,11 +13,6 @@ const cartSchema = new mongoose.Schema({
         ref: 'Movie',
         required: true,
       },
-      quantity: {
-        type: Number,
-        default: 1,
-        required: true,
-      },
     },
   ],
   itemCount: {
