@@ -1,0 +1,21 @@
+.movieCard {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    width: calc(33.333% - 20px); /* 3 cards per row with margins */
+    box-sizing: border-box;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .movieCard {
+      width: calc(50% - 20px); /* 2 cards per row */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .movieCard {
+      width: calc(100% - 20px); /* 1 card per row */
+    }
+  }
