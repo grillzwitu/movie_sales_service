@@ -2,19 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import RootLayout from './layout';
 import MovieCard from '@components/MovieCard';
 import styles from '@styles/globals.css';
 
-
-// Return a list of `params` to populate the [id] dynamic segment
-export async function generateStaticParams() {
-  const movies = await fetch('/api/movies').then((res) => res.json())
- 
-  return movies.map((movie) => ({
-    id: movie._id,
-  }))
-}
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);

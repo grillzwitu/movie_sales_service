@@ -35,7 +35,7 @@ export async function GET(req, res) {
       }
     })
     .catch(error => {
-      res.writeHead(error.statusCode || 500, { 'Content-Type': 'application/json' });
-      return res.end(JSON.stringify({ error: error.message }));
+      console.error(error);
+      return new Response(JSON.stringify({ error: error.message }), { status: error.statusCode || 500, headers: { 'Content-Type': 'application/json' } });
     });
 }

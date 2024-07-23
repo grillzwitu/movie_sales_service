@@ -37,6 +37,6 @@ export const POST = async (req) => {
     return new Response(JSON.stringify({ message: 'Login successful', token }), { status: 200, headers });
   } catch (error) {
     console.error(error);
-    return new Response(JSON.stringify({ error: 'An error occurred' }), { status: 500, headers: { 'Content-Type': 'application/json' } });
+      return new Response(JSON.stringify({ error: error.message }), { status: error.statusCode || 500, headers: { 'Content-Type': 'application/json' } });
   }
 };
