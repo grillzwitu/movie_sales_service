@@ -72,9 +72,28 @@ const HomePage = () => {
       {loading && <p>Loading movies...</p>}
       {error && <p>{error}</p>}
       {!loading && !error && movies.length === 0 && <p>No movies available at the moment.</p>}
-      {!loading && !error && movies.length > 0 && movies.map((movie) => (
-        <MovieCard key={movie._id} movie={movie} addToCart={addToCart} />
-      ))}
+      {!loading && !error && movies.length > 0 && (
+        <article style= {{ padding: "20px"}}>
+          <h2>Movies</h2>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: 20,
+            }}
+          >
+            {movies.map((movie) => (
+              <MovieCard
+                key={movie._id}
+                movie={movie}
+                isInCart={cart.some((item) => item._id === movie._id)}
+                addToCart={() => addToCart(movie)}
+                removeFromCart={() => removeFromCart(movie)}
+              />
+            ))}
+          </div>
+        </article>
+      )}
     </section>
   );
 };

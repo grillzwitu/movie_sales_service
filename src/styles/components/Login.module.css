@@ -23,3 +23,9 @@
     background-color: #575757;
   }
   
+  .error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  

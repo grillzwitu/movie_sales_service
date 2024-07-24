@@ -17,7 +17,7 @@ import Image from 'next/image';
 const MovieCard = ({ movie, isInCart, addToCart, removeFromCart }) => {
   return (
     <div className={styles.card}>
-      <Image src={movie.coverImage} alt={movie.title} className={styles.image} width="100" height="100"/>
+      <Image src={movie.coverImage} alt={movie.title} className={styles.image} width="100" height="100" priority="true"/>
       <h3>{movie.title}</h3>
       <p>{movie.genres.join(', ')}</p>
       {isInCart ? (
