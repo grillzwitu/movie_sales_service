@@ -19,12 +19,23 @@ export async function POST(req, res) {
       throw new Error('Method Not Allowed');
     }
 
-    const { firstName, lastName, email, password } = req.body;
+    const body = await req.json()
 
-    const validationError = validateRegistration(req.body);
+    const { firstName, lastName, email, password } = body;
+
+    const validationError = validateRegistration(body);
     if (validationError) {
       return new Response(JSON.stringify({ error: validationError }), {
         status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    // Check if email already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return new Response(JSON.stringify({ error: 'Email already exists' }), {
+        status: 409, // Conflict
         headers: { 'Content-Type': 'application/json' }
       });
     }

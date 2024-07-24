@@ -17,7 +17,7 @@ export async function PATCH(req) {
     await connectToDatabase();
     await authenticate(req);
     
-    const updates = req.body;
+    const updates = await req.json();
     
     // Validate update fields
     const allowedUpdates = ['firstName', 'lastName', 'email', 'password', 'currentPassword'];

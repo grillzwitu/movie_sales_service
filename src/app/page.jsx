@@ -5,7 +5,14 @@ import axios from 'axios';
 import MovieCard from '@components/MovieCard';
 import styles from '@styles/globals.css';
 
-
+/**
+ * Renders the homepage with a list of movies.
+ *
+ * Fetches movies from the API and displays them using MovieCard components.
+ * Handles loading, error, and empty state scenarios.
+ *
+ * @returns {JSX.Element} The rendered homepage component.
+ */
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
   const [cart, setCart] = useState([]);
@@ -61,14 +68,14 @@ const HomePage = () => {
   };
 
   return (
-      <section className={styles.movieContainer}>
-        {loading && <p>Loading movies...</p>}
-        {error && <p>{error}</p>}
-        {!loading && !error && movies.length === 0 && <p>No movies available at the moment.</p>}
-        {!loading && !error && movies.length > 0 && movies.map((movie) => (
-          <MovieCard key={movie._id} movie={movie} addToCart={addToCart} />
-        ))}
-      </section>
+    <section className={styles.movieContainer}>
+      {loading && <p>Loading movies...</p>}
+      {error && <p>{error}</p>}
+      {!loading && !error && movies.length === 0 && <p>No movies available at the moment.</p>}
+      {!loading && !error && movies.length > 0 && movies.map((movie) => (
+        <MovieCard key={movie._id} movie={movie} addToCart={addToCart} />
+      ))}
+    </section>
   );
 };
 

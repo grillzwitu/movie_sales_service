@@ -1,6 +1,6 @@
 import connectToDatabase from '@utils/db';
 import User from '@models/User';
-import { verifyPassword, signToken } from './auth';
+import { verifyPassword, signToken } from '@utils/auth';
 
 /**
  * Handles login requests.

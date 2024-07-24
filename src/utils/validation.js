@@ -6,6 +6,7 @@
  */
 export function validateRegistration(formData) {
   const { firstName, lastName, email, password } = formData;
+  console.log(formData.firstName)
 
   if (!firstName || !lastName || !email || !password) {
     return 'All fields are required';
