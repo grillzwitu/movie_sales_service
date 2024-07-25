@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import styles from '@styles/components/Login.module.css';
 
 const Login = () => {
@@ -11,8 +11,7 @@ const Login = () => {
     password: '',
   });
   const [errorMessage, setErrorMessage] = useState(''); // State for error message
-
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,9 +22,9 @@ const Login = () => {
     try {
       const response = await axios.post('/api/users/login', formData);
       console.log('Login successful:', response.data);
-      navigate('/');
+      router.push('/');
     } catch (error) {
-      console.error('Login failed:', error.response.data);
+      console.error('Login failed:', error.message);
       setErrorMessage('Invalid credentials. Please try again.'); // Set error message
     }
   };
