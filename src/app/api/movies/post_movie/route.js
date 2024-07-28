@@ -1,3 +1,12 @@
+import connectToDatabase from '@utils/db';
+import Movie from '@models/Movie';
+import { authenticate, ensureAdmin } from '@utils/auth';
+import cloudinary from '@utils/fileStore';
+import path from 'path';
+import fs from 'fs/promises';
+import deleteFile from '@utils/delete_file';
+
+
 /**
  * Handles POST requests for creating a new movie.
  *
@@ -19,6 +28,8 @@ export async function POST(req) {
       const user = await authenticate(req); // Authenticate the user
       await ensureAdmin(user); // Ensure the user is an admin
 
+      await console.log("Hey Admin, what the latest movie?")
+
       // Handle file upload
       const file = formData.get("coverImage");
 
@@ -26,10 +37,15 @@ export async function POST(req) {
         return reject(new Response(JSON.stringify({ error: "No files received." }), { status: 400 }));
       }
 
+      await console.log("Got the file")
+
       // Convert file data to Buffer and create file path
       const buffer = Buffer.from(await file.arrayBuffer());
+      await console.log("Buffered")
       const filename = file.name.replace(/\s+/g, "_"); // Replace spaces with underscores
+      await console.log("filename arranged")
       const filePath = path.join(process.cwd(), 'uploads', filename); // Create the file path
+      await console.log("path created")
 
       await console.log(filename);
       await console.log(filePath);
@@ -37,6 +53,8 @@ export async function POST(req) {
       // Ensure uploads directory exists and write file
       await fs.mkdir(path.dirname(filePath), { recursive: true }); // Ensure the uploads directory exists
       await fs.writeFile(filePath, buffer); // Write the file to the specified directory
+
+      console.log("file written")
 
       // Upload image to Cloudinary
       const uploadedImg = await cloudinary.uploader.upload(filePath, {
