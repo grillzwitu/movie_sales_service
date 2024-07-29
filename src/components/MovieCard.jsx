@@ -3,7 +3,7 @@ import styles from '@styles/components/MovieCard.module.css';
 import Image from 'next/image';
 
 const MovieCard = ({ movie, addToCart, removeFromCart, cartItems }) => {
-  const isInCart = cartItems.some((item) => item.movieId === movie.movieId);
+  const isInCart = cartItems.some((item) => item.movieId === movie._id);
 
   return (
     <div className={styles.card}>
@@ -11,7 +11,7 @@ const MovieCard = ({ movie, addToCart, removeFromCart, cartItems }) => {
       <h3>{movie.title}</h3>
       <p>{movie.genres.join(', ')}</p>
       <button
-        onClick={() => (isInCart ? removeFromCart(movie.movieId) : addToCart(movie))}
+        onClick={() => (isInCart ? removeFromCart(movie._id) : addToCart({ ...movie, movieId: movie._id }))}
         className="cart-button"
       >
         {isInCart ? 'Remove from Cart' : 'Add to Cart'}

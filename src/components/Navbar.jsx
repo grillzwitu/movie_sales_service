@@ -1,27 +1,16 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from '@styles/components/Navbar.module.css';
 
 const Navbar = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    // Fetch user and cart details (assuming these are stored in session/local storage)
-    const userData = JSON.parse(localStorage.getItem('user'));
-    const cartData = JSON.parse(localStorage.getItem('cart'));
-
-    if (userData) {
-      setUser(userData);
-    }
-
-    if (cartData) {
-      setCartCount(cartData.length);
-    }
-  }, []);
+  
+  const user = useSelector((state) => state.user.user); // Assuming user state is in the user slice
+  const cartItems = useSelector((state) => state.cart.items);
+  const cartCount = cartItems.length;
 
   // Toggle dropdown menu
   const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);

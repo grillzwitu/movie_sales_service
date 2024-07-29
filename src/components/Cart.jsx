@@ -37,8 +37,8 @@ function Cart() {
                   event.target.src = 'placeholder-image.jpg';
                 }}
                 className="cart-item-image"
-                width={100} // Adjust width as needed
-                height={100} // Adjust height as needed
+                width={100}
+                height={100}
               />
               <div className="cart-item-details">
                 <h3>{item.title}</h3>

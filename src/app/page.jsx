@@ -72,7 +72,7 @@ const HomePage = () => {
                 movie={movie}
                 addToCart={handleAddToCart}
                 removeFromCart={handleRemoveFromCart}
-                cartItems={cartItems} // Pass cartItems to MovieCard
+                cartItems={cartItems}
               />
             ))}
           </div>
