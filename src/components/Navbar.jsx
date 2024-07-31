@@ -26,12 +26,14 @@ const Navbar = () => {
           <Link href="/cart">Cart <sup>{cartCount}</sup></Link>
         </div>
       </div>
-      <div className={styles.navLinks}>
-        <Link href="/">Home</Link>
-        <Link href="/users/register">Register</Link>
-        <Link href="/users/login">Login</Link>
-        <Link href="/cart">Cart <sup>{cartCount}</sup></Link>
-      </div>
+      {isDropdownOpen ? null : (
+        <div className={styles.navLinks}>
+          <Link href="/">Home</Link>
+          <Link href="/users/register">Register</Link>
+          <Link href="/users/login">Login</Link>
+          <Link href="/cart">Cart <sup>{cartCount}</sup></Link>
+        </div>
+      )}
     </nav>
   );
 };

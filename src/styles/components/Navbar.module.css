@@ -46,6 +46,7 @@
 
 .navbar .dropdown-content.open {
   display: block;
+  top: 100%; 
 }
 
 .navbar .dropdown:hover .dropdown-content {
@@ -61,7 +62,7 @@
   margin: 0 1rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .navbar {
     flex-direction: column;
   }
