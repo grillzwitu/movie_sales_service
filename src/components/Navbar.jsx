@@ -1,39 +1,51 @@
 'use client'
 
-import React, { useState } from 'react';
 import Link from 'next/link';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styles from '@styles/components/Navbar.module.css';
 
 const Navbar = () => {
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const cartItems = useSelector((state) => state.cart.items); // Accessing cart items from Redux
   const cartCount = cartItems.length; // Calculating cart item count
 
-  // Toggle dropdown menu
-  const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <nav className={styles.navbar}>
-      <div className={styles.dropdown}>
-        <button onClick={toggleDropdown}>Menu</button>
-        <div
-          className={`${styles.dropdownContent} ${isDropdownOpen ? styles.open : ''}`}
-        >
-          <Link href="/">Home</Link>
-          <Link href="/users/register">Register</Link>
-          <Link href="/users/login">Login</Link>
-          <Link href="/cart">Cart <sup>{cartCount}</sup></Link>
+      <div className={styles.navbarContainer}>
+        <Link href="/" legacyBehavior>
+          <a className={styles.navbarLogo}>Logo</a>
+        </Link>
+        <div className={styles.menuIcon} onClick={toggleMenu}>
+          <i className={isOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
         </div>
+        <ul className={isOpen ? `${styles.navMenu} ${styles.active}` : styles.navMenu}>
+          <li className={styles.navItem}>
+            <Link href="/" legacyBehavior>
+              <a className={styles.navLinks}>Home</a>
+            </Link>
+          </li>
+          <li className={styles.navItem}>
+            <Link href="/users/register" legacyBehavior>
+              <a className={styles.navLinks}>Register</a>
+            </Link>
+          </li>
+          <li className={styles.navItem}>
+            <Link href="/users/login" legacyBehavior>
+              <a className={styles.navLinks}>Login</a>
+            </Link>
+          </li>
+          <li className={styles.navItem}>
+            <Link href="/cart" legacyBehavior>
+              <a className={styles.navLinks}>Cart <sup>{cartCount}</sup></a>
+            </Link>
+          </li>
+        </ul>
       </div>
-      {isDropdownOpen ? null : (
-        <div className={styles.navLinks}>
-          <Link href="/">Home</Link>
-          <Link href="/users/register">Register</Link>
-          <Link href="/users/login">Login</Link>
-          <Link href="/cart">Cart <sup>{cartCount}</sup></Link>
-        </div>
-      )}
     </nav>
   );
 };
