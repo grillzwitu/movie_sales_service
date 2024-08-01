@@ -44,9 +44,9 @@
   background-color: #575757;
 }
 
-.navbar .dropdown-content.open {
+.navbar .dropdown-content .open {
   display: block;
-  top: 100%; 
+  top: 100%;
 }
 
 .navbar .dropdown:hover .dropdown-content {
